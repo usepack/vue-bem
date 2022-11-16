@@ -2,7 +2,7 @@ import { App } from 'vue';
 import { BemOptions, BemItem } from '@/models';
 import { getClassName } from './helpers';
 
-export function install (Vue: App, { hyphenate }: BemOptions): void {
+export function install (Vue: App, { hyphenate, modifierSeparator }: BemOptions): void {
   Vue.mixin({
     name: 'BemMixin',
     data () {
@@ -26,7 +26,7 @@ export function install (Vue: App, { hyphenate }: BemOptions): void {
         const block: string = this.bemMixinBlockName || (hyphenate ? pascalToKebabCase(n) : n);
         const modifiers: string[] = m ? (typeof m === 'string' ? [m] : (Array.isArray(m) ? m : Object.keys(m).filter(key => m[key]))) : [];
         const elementClass = getClassName(block, e);
-        const modifiersClasses = modifiers.map(m => getClassName(block, e, m));
+        const modifiersClasses = modifiers.map(m => getClassName(block, e, m, modifierSeparator));
         return [elementClass, ...modifiersClasses];
       }
     }

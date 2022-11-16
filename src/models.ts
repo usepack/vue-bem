@@ -1,5 +1,6 @@
 export interface BemOptions {
   hyphenate?: boolean;
+  modifierSeparator?: string;
 }
 
 export interface BemItem {

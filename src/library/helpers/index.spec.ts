@@ -14,5 +14,8 @@ describe('helpers', () => {
     it('should return given block joined with given element by "__" joined with given modifier by "--"', () => {
       expect(getClassName('some-block', 'some-element', 'some-modifier')).toEqual('some-block__some-element--some-modifier');
     });
+    it('should return given block joined with given element by "__" joined with given modifier by "_"', () => {
+      expect(getClassName('some-block', 'some-element', 'some-modifier', '_')).toEqual('some-block__some-element_some-modifier');
+    });
   });
 });
