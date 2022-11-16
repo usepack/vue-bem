@@ -18,7 +18,7 @@
 
 * [Installation](#installation)
 * [API](#api)
-* [Documentation](#documentation)
+* [Documentation](#examples)
 
 
 ## Installation
@@ -42,6 +42,7 @@ createApp(App).use(createBem({ /* your config here */ })).mount('#app');
 ```ts
 interface BemOptions {
   hyphenate?: boolean;
+  modifierSeparator?: string;
 }
 ```
 
@@ -53,7 +54,7 @@ interface BemOptions {
 interface BemItem {
   b?: string;
   e?: string;
-  m?: string | string[] | {[key in string]: boolean};
+  m?: string | string[] | Record<string, string | number | boolean>;
 }
 ```
 
@@ -221,12 +222,12 @@ export default defineComponent({
 
 ```
 
-### Conditional modfiers:
+### Conditional modifiers:
 
 ```vue
 <template>
   <div :class="$bem({})"> <!-- returns ['hello-world'] -->
-    <p :class="$bem({e: 'description', m: {underlined: true, highlighted: isHighlighted}})"> <!-- returns ['hello-world__description', 'hello-world__description--underlined'] -->
+    <p :class="$bem({e: 'description', m: {underlined: true, highlighted: isHighlighted, fontWeight: 'bold'}})"> <!-- returns ['hello-world__description', 'hello-world__description--underlined', 'hello-world__description--font-weight--bold'] -->
       This is a description
     </p>
   </div>
@@ -255,6 +256,62 @@ export default defineComponent({
     }
     &--highlighted {
       // some styles here
+    }
+    &--font-weight {
+       &--bold {
+         // some styles here
+       }
+    }
+  }
+}
+</style>
+
+```
+
+
+### Using different modifier separator:
+
+If you use `_` instead of `--` or another separator, you should init library with `modifierSeparator` option:
+
+```js
+import { createBem } from '@usepack/vue-bem';
+
+createApp(App).use(createBem({
+  modifierSeparator: '_'
+})).mount('#app');
+```
+
+and then:
+
+```vue
+<template>
+  <div :class="$bem({})"> <!-- returns ['hello-world'] -->
+    <p :class="$bem({e: 'description', m: {fontWeight: 'bold'}})"> <!-- returns ['hello-world__description', 'hello-world__description_font-weight_bold'] -->
+      This is a description
+    </p>
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+  name: 'HelloWorld',
+});
+</script>
+
+<style lang="scss">
+.hello-world {
+  // some styles here
+  &__description {
+    // some styles here
+    &_underlined {
+      // some styles here
+    }
+    &_font-weight {
+      &_bold {
+        // some styles here
+      }
     }
   }
 }
