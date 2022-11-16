@@ -1,7 +1,8 @@
 export function getClassName (
   block: string,
   element?: string,
-  modifier?: string,
+  modifierKey?: string,
+  modifierValue?: string | boolean | number,
   modifierSeparator = '--'
 ): string {
   let className = `${block}`;
@@ -10,8 +11,12 @@ export function getClassName (
     className += `__${element}`;
   }
 
-  if (modifier) {
-    className += `${modifierSeparator}${modifier}`;
+  if (modifierKey && modifierValue !== false) {
+    className += `${modifierSeparator}${modifierKey}`;
+
+    if (typeof modifierValue === 'string' && modifierValue) {
+      className += `${modifierSeparator}${modifierValue}`;
+    }
   }
 
   return className;

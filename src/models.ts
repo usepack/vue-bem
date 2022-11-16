@@ -3,8 +3,10 @@ export interface BemOptions {
   modifierSeparator?: string;
 }
 
+export type BemModifier = string | string[] | Record<string, string | number | boolean>;
+
 export interface BemItem {
   b?: string;
   e?: string;
-  m?: string | string[] | {[key in string]: boolean};
+  m?: BemModifier;
 }

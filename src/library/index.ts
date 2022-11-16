@@ -24,9 +24,26 @@ export function install (Vue: App, { hyphenate, modifierSeparator }: BemOptions)
 
         const n = this.$options.name;
         const block: string = this.bemMixinBlockName || (hyphenate ? pascalToKebabCase(n) : n);
-        const modifiers: string[] = m ? (typeof m === 'string' ? [m] : (Array.isArray(m) ? m : Object.keys(m).filter(key => m[key]))) : [];
+
+        let modifiers: [string, string | boolean][] = [];
+        if (typeof m === 'string') {
+          modifiers = [[m, true]];
+        } else if (Array.isArray(m)) {
+          modifiers = m.map(key => [key, true]);
+        } else if (typeof m === 'object' && m != null) {
+          modifiers = Object.keys(m)
+            .filter(key => m[key])
+            .map(key => {
+              const value = m[key];
+              if (typeof value === 'number') {
+                return [key, value.toString()];
+              }
+              return [key, value];
+            });
+        }
+
         const elementClass = getClassName(block, e);
-        const modifiersClasses = modifiers.map(m => getClassName(block, e, m, modifierSeparator));
+        const modifiersClasses = modifiers.map(([key, value]) => getClassName(block, e, key, value, modifierSeparator));
         return [elementClass, ...modifiersClasses];
       }
     }
