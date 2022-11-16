@@ -23,12 +23,12 @@
 
 ## Installation
 
-`npm i @vuebits/bem` / `yarn add @vuebits/bem`
+`npm i @usepack/vue-bem` / `yarn add @usepack/vue-bem`
 
 And install in your entry file (e.g. `main.js`):
 
 ```javascript
-import { createBem } from '@vuebits/bem';
+import { createBem } from '@usepack/vue-bem';
 
 createApp(App).use(createBem({ /* your config here */ })).mount('#app');
 ```
@@ -89,7 +89,7 @@ export default defineComponent({
 If you use PascalCase naming convence you should init library with `hyphenate` option:
 
 ```js
-import { createBem } from '@vuebits/bem';
+import { createBem } from '@usepack/vue-bem';
 
 createApp(App).use(createBem({
   hyphenate: true

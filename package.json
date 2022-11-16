@@ -1,22 +1,23 @@
 {
-  "name": "@vuebits/bem",
+  "name": "@usepack/vue-bem",
   "version": "1.2.2",
   "description": "Vue plugin for BEM parameterization",
-  "main": "./dist/vuebits-bem.common.js",
-  "module": "./dist/vuebits-bem.common.js",
+  "main": "./dist/vue-bem.common.js",
+  "module": "./dist/vue-bem.common.js",
   "types": "./dist/types/index.d.ts",
-  "author": "vuebits (https://github.com/vuebits)",
+  "author": "usepack (https://github.com/usepack)",
   "contributors": [
-    "Szczepan Masny <szczepanmasny@gmail.com> (https://github.com/szczepanmasny)"
+    "Szczepan Masny <szczepanmasny@gmail.com> (https://github.com/szczepanmasny)",
+    "Svyatoslav Fyodorov <intelrug@gmail.com> (https://github.com/intelrug)"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/vuebits/bem",
+  "homepage": "https://github.com/usepack/vue-bem",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vuebits/bem.git"
+    "url": "git+https://github.com/usepack/vue-bem.git"
   },
   "bugs": {
-    "url": "https://github.com/vuebits/bem/issues"
+    "url": "https://github.com/usepack/vue-bem/issues"
   },
   "keywords": [
     "bem",
@@ -31,7 +32,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "vue-cli-service build --target lib --name vuebits-bem src/index.ts",
+    "build": "vue-cli-service build --target lib --name vue-bem src/index.ts",
     "serve": "vue-cli-service serve src/sandbox",
     "test": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
