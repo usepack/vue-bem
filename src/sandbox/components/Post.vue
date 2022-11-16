@@ -26,7 +26,8 @@ export default defineComponent({
     return {
       contentModifiers: {
         light: true,
-        underlined: false
+        underlined: false,
+        fontWeight: 'bold'
       }
     };
   }
@@ -41,6 +42,12 @@ export default defineComponent({
     }
     &--underlined {
       text-decoration: underline;
+    }
+    &--underlined {
+      text-decoration: underline;
+    }
+    &--font-weight--bold {
+      font-weight: bold;
     }
   }
 }

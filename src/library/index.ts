@@ -12,7 +12,7 @@ export function install (Vue: App, { hyphenate, modifierSeparator }: BemOptions)
     },
     methods: {
       $bem ({ b, e, m }: BemItem): string[] {
-        const pascalToKebabCase = (s: string) => s
+        const toKebabCase = (s: string) => s
           .replace(/([A-Z])([A-Z])/g, '$1-$2')
           .replace(/([a-z])([A-Z])/g, '$1-$2')
           .replace(/[\s_]+/g, '-')
@@ -23,22 +23,22 @@ export function install (Vue: App, { hyphenate, modifierSeparator }: BemOptions)
         }
 
         const n = this.$options.name;
-        const block: string = this.bemMixinBlockName || (hyphenate ? pascalToKebabCase(n) : n);
+        const block: string = this.bemMixinBlockName || (hyphenate ? toKebabCase(n) : n);
 
         let modifiers: [string, string | boolean][] = [];
         if (typeof m === 'string') {
-          modifiers = [[m, true]];
+          modifiers = [[toKebabCase(m), true]];
         } else if (Array.isArray(m)) {
-          modifiers = m.map(key => [key, true]);
+          modifiers = m.map(key => [toKebabCase(key), true]);
         } else if (typeof m === 'object' && m != null) {
           modifiers = Object.keys(m)
             .filter(key => m[key])
             .map(key => {
               const value = m[key];
               if (typeof value === 'number') {
-                return [key, value.toString()];
+                return [toKebabCase(key), value.toString()];
               }
-              return [key, value];
+              return [toKebabCase(key), value];
             });
         }
 
