@@ -4,5 +4,8 @@ import { createBem } from '@/index';
 
 createApp(App).use(createBem({
   hyphenate: true,
-  modifierSeparator: '--'
+  modifierSeparator: '--',
+  transformComponentName (name: string): string {
+    return name.replace(/^V/, '');
+  }
 })).mount('#app');

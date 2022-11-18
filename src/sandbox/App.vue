@@ -91,7 +91,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.v-app {
+.app {
   &__post {
     &--highlighted {
       background-color: #ff0;

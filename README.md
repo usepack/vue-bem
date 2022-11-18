@@ -43,6 +43,7 @@ createApp(App).use(createBem({ /* your config here */ })).mount('#app');
 interface BemOptions {
   hyphenate?: boolean;
   modifierSeparator?: string;
+  transformComponentName?: (name: string) => string;
 }
 ```
 
@@ -111,6 +112,45 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'HelloWorld'
+});
+</script>
+
+<style lang="scss">
+.hello-world {
+  // some styles here
+}
+</style>
+
+```
+
+### Transforming component name before use in css class names:
+
+If your components have name with prefix (i.e `VHelloWorld`) you can init library with `transformComponentName` option to remove prefix:
+
+```js
+import { createBem } from '@usepack/vue-bem';
+
+createApp(App).use(createBem({
+  transformComponentName (name: string): string {
+    return name.replace(/^V/, '');
+  }
+})).mount('#app');
+```
+
+and then:
+
+```vue
+<template>
+  <div :class="$bem({})"> <!-- returns ['hello-world'] -->
+    Hello world!
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+  name: 'VHelloWorld'
 });
 </script>
 

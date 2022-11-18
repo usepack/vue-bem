@@ -2,14 +2,9 @@ import { App } from 'vue';
 import { BemOptions, BemItem } from '@/models';
 import { getClassName } from './helpers';
 
-export function install (Vue: App, { hyphenate, modifierSeparator }: BemOptions): void {
+export function install (Vue: App, options: BemOptions): void {
   Vue.mixin({
     name: 'BemMixin',
-    data () {
-      return {
-        bemMixinBlockName: ''
-      };
-    },
     methods: {
       $bem ({ b, e, m }: BemItem): string[] {
         const toKebabCase = (s: string) => s
@@ -18,12 +13,13 @@ export function install (Vue: App, { hyphenate, modifierSeparator }: BemOptions)
           .replace(/[\s_]+/g, '-')
           .toLowerCase();
 
-        if (b) {
-          this.bemMixinBlockName = b;
+        let n = this.$options.name;
+
+        if (options.transformComponentName) {
+          n = options.transformComponentName(n);
         }
 
-        const n = this.$options.name;
-        const block: string = this.bemMixinBlockName || (hyphenate ? toKebabCase(n) : n);
+        const block: string = b || (options.hyphenate ? toKebabCase(n) : n);
 
         let modifiers: [string, string | boolean][] = [];
         if (typeof m === 'string') {
@@ -43,7 +39,7 @@ export function install (Vue: App, { hyphenate, modifierSeparator }: BemOptions)
         }
 
         const elementClass = getClassName(block, e);
-        const modifiersClasses = modifiers.map(([key, value]) => getClassName(block, e, key, value, modifierSeparator));
+        const modifiersClasses = modifiers.map(([key, value]) => getClassName(block, e, key, value, options.modifierSeparator));
         return [elementClass, ...modifiersClasses];
       }
     }

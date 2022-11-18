@@ -35,7 +35,7 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-.v-post {
+.post {
   &__content {
     &--light {
       color: #555;
