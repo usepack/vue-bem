@@ -1,5 +1,5 @@
 <template>
-  <main :class="$bem({})">
+  <main :class="$bem()">
     <div
       v-for="modifier in modifiers"
       :key="modifier.name"

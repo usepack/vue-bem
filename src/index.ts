@@ -9,6 +9,6 @@ export function createBem (options: BemOptions): {install: (T: App) => void} {
 }
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
-    $bem: (T: BemItem) => string[];
+    $bem: (T?: BemItem) => string[];
   }
 }

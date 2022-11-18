@@ -6,7 +6,9 @@ export function install (Vue: App, options: BemOptions): void {
   Vue.mixin({
     name: 'BemMixin',
     methods: {
-      $bem ({ b, e, m }: BemItem): string[] {
+      $bem (bem?: BemItem): string[] {
+        const { b, e, m } = bem || {};
+
         const toKebabCase = (s: string) => s
           .replace(/([A-Z])([A-Z])/g, '$1-$2')
           .replace(/([a-z])([A-Z])/g, '$1-$2')

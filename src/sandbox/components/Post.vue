@@ -1,5 +1,5 @@
 <template>
-  <article :class="$bem({})">
+  <article :class="$bem()">
     <h1 :class="$bem({e: 'title'})">
       I am title
     </h1>

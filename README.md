@@ -65,7 +65,7 @@ interface BemItem {
 
 ```vue
 <template>
-  <div :class="$bem({})"> <!-- $bem({}) will return 'hello-world' -->
+  <div :class="$bem()"> <!-- $bem() will return 'hello-world' -->
     Hello world!
   </div>
 </template>
@@ -102,7 +102,7 @@ and then:
 
 ```vue
 <template>
-  <div :class="$bem({})"> <!-- returns ['hello-world'] -->
+  <div :class="$bem()"> <!-- returns ['hello-world'] -->
     Hello world!
   </div>
 </template>
@@ -141,7 +141,7 @@ and then:
 
 ```vue
 <template>
-  <div :class="$bem({})"> <!-- returns ['hello-world'] -->
+  <div :class="$bem()"> <!-- returns ['hello-world'] -->
     Hello world!
   </div>
 </template>
@@ -191,7 +191,7 @@ export default defineComponent({
 
 ```vue
 <template>
-  <div :class="$bem({})"> <!-- (or $bem({b: 'hello-world'})) - return ['hello-world'] -->
+  <div :class="$bem()"> <!-- (or $bem({b: 'hello-world'})) - return ['hello-world'] -->
     <h1 :class="$bem({e: 'title'})"> <!-- (or $bem({b: 'hello-world', e: 'title'})) - returns ['hello-world__title'] -->
       Hello world!
     </h1>
@@ -227,7 +227,7 @@ export default defineComponent({
 
 ```vue
 <template>
-  <div :class="$bem({})"> <!-- returns ['hello-world'] -->
+  <div :class="$bem()"> <!-- returns ['hello-world'] -->
     <p :class="$bem({e: 'text', m: ['underlined']})"> <!-- returns ['hello-world__text', 'hello-world__text--underlined'] -->
       This is a description
     </p>
@@ -266,7 +266,7 @@ export default defineComponent({
 
 ```vue
 <template>
-  <div :class="$bem({})"> <!-- returns ['hello-world'] -->
+  <div :class="$bem()"> <!-- returns ['hello-world'] -->
     <p :class="$bem({e: 'description', m: {underlined: true, highlighted: isHighlighted, fontWeight: 'bold'}})"> <!-- returns ['hello-world__description', 'hello-world__description--underlined', 'hello-world__description--font-weight--bold'] -->
       This is a description
     </p>
@@ -325,7 +325,7 @@ and then:
 
 ```vue
 <template>
-  <div :class="$bem({})"> <!-- returns ['hello-world'] -->
+  <div :class="$bem()"> <!-- returns ['hello-world'] -->
     <p :class="$bem({e: 'description', m: {fontWeight: 'bold'}})"> <!-- returns ['hello-world__description', 'hello-world__description_font-weight_bold'] -->
       This is a description
     </p>
