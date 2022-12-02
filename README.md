@@ -267,7 +267,7 @@ export default defineComponent({
 ```vue
 <template>
   <div :class="$bem()"> <!-- returns ['hello-world'] -->
-    <p :class="$bem({e: 'description', m: {underlined: true, highlighted: isHighlighted, fontWeight: 'bold'}})"> <!-- returns ['hello-world__description', 'hello-world__description--underlined', 'hello-world__description--font-weight--bold'] -->
+    <p :class="$bem({e: 'description', m: {underlined: true, highlighted: isHighlighted, 'font-weight': 'bold'}})"> <!-- returns ['hello-world__description', 'hello-world__description--underlined', 'hello-world__description--font-weight--bold'] -->
       This is a description
     </p>
   </div>
@@ -326,7 +326,7 @@ and then:
 ```vue
 <template>
   <div :class="$bem()"> <!-- returns ['hello-world'] -->
-    <p :class="$bem({e: 'description', m: {fontWeight: 'bold'}})"> <!-- returns ['hello-world__description', 'hello-world__description_font-weight_bold'] -->
+    <p :class="$bem({e: 'description', m: {'font-weight': 'bold'}})"> <!-- returns ['hello-world__description', 'hello-world__description_font-weight_bold'] -->
       This is a description
     </p>
   </div>

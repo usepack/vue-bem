@@ -25,18 +25,18 @@ export function install (Vue: App, options: BemOptions): void {
 
         let modifiers: [string, string | boolean][] = [];
         if (typeof m === 'string') {
-          modifiers = [[toKebabCase(m), true]];
+          modifiers = [[m, true]];
         } else if (Array.isArray(m)) {
-          modifiers = m.map(key => [toKebabCase(key), true]);
+          modifiers = m.map(key => [key, true]);
         } else if (typeof m === 'object' && m != null) {
           modifiers = Object.keys(m)
             .filter(key => m[key])
             .map(key => {
               const value = m[key];
               if (typeof value === 'number') {
-                return [toKebabCase(key), value.toString()];
+                return [key, value.toString()];
               }
-              return [toKebabCase(key), value];
+              return [key, value];
             });
         }
 
