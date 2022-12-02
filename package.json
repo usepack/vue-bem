@@ -1,6 +1,6 @@
 {
   "name": "@usepack/vue-bem",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Vue plugin for BEM parameterization",
   "main": "./dist/vue-bem.common.js",
   "module": "./dist/vue-bem.common.js",
